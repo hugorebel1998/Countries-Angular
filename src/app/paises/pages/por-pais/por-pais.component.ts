@@ -9,7 +9,7 @@ import { PaiesService } from '../../services/paies.service';
   styles: [
   ]
 })
-export class PorPaisComponent {
+export class PorPaisComponent{
 
   termino: string = "";
   hayError: boolean = false;
@@ -17,11 +17,11 @@ export class PorPaisComponent {
 
   constructor(private paisService: PaiesService) { }
 
-  buscar() {
+  buscar(termino:string) {
     this.hayError = false;
-    console.log(this.termino);
+    this.termino = termino;
 
-    this.paisService.buscarPais(this.termino)
+    this.paisService.buscarPais(termino)
       .subscribe((paises) => {
         this.paises = paises;
         console.log(paises);
@@ -31,6 +31,10 @@ export class PorPaisComponent {
         this.paises = [];
         // console.info(error);
       });
+  }
+  sugerencia(termino:any){
+    this.hayError = false;
+    // TODO:Crar sugerencia
   }
 
 }

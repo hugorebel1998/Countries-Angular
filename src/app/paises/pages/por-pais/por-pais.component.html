@@ -4,10 +4,11 @@
             <h2 class="text-center mb-4">Buscar por país</h2>
             <div class="row">
                 <div class="col-md-12">
-                    <form (ngSubmit)=buscar() autocomplete="off">
-                        <input type="text" class="form-control" [(ngModel)]="termino" name="termino" placeholder="Buscar por país...
-                            ">
-                    </form>
+                    <app-pais-input 
+                    (onEnter)="buscar($event)"
+                    (onDebounce)="sugerencia($event)"
+                    placeholder="Buscar por país">
+                    </app-pais-input>
                     <hr>
                 </div>
                 <div *ngIf="hayError" class="col-md-12">
@@ -22,29 +23,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive-md">
-                                <table class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Bandera</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Poblacion</th>
-                                            <th scope="col">Administrador</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let pais of paises;" class="text-center">
-                                            <th>{{ pais.callingCodes }}</th>
-                                            <td><img class="img-fluid" [src]="pais.flag" width="50"></td>
-                                            <td>{{ pais.name }}</td>
-                                            <td>{{ pais.population | number }}</td>
-                                            <td>
-                                                <a [routerLink]="['/ver-pais', pais.alpha2Code]" routerLinkActive="router-link-active"  class="btn btn-sm btn-success"><i class="far fa-eye"></i>
-                                                    Ver país</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <app-pais-tabla [paises]="paises"></app-pais-tabla>
                             </div>
                         </div>
                     </div>

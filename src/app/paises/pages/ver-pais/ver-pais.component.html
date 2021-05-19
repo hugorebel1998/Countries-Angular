@@ -1,1 +1,28 @@
-<p>ver-pais works!</p>
+<div *ngIf="!pais; else divPais" class="spinner-grow text-info" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<ng-template #divPais>
+    <div class="container-fluid">
+        <div class="row justify-conten-center">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Bandera</h5>
+                        <div class="card" style="width: 18rem;">
+                            <img [src]="pais.flag" class="card-img-top">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h3>Información</h3>
+                        <h3><b>País:</b> {{ pais.name }} </h3>
+                        <h5><b>Region:</b> {{ pais.region }}</h5>
+                        <h5><b>Subregión:</b> {{ pais.subregion }}</h5>
+                        <!-- <h5><b>Lenguaje:</b> {{ pais.languages[3] }}</h5> -->
+                        <h5><b>Subregión:</b> {{ pais.population }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

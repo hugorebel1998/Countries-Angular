@@ -21,7 +21,7 @@ export class VerPaisComponent implements OnInit {
   ngOnInit(): void {
 
     this.activate.params
-      .subscribe(({ id}) => {
+      .subscribe(({ id }) => {
         console.log(id);
         
         this.servicePais.getPaisCode(id)

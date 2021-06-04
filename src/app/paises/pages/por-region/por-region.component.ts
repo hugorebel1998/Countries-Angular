@@ -10,27 +10,33 @@ import { PaiesService } from '../../services/paies.service';
 })
 export class PorRegionComponent {
 
-  termino: string = "";
+  regiones:string[] = ["africa", "americas", "asia", "europe","oceania"];
+  regionActiva:string = "";
   hayError: boolean = false;
   paises: Country[] = [];
+  
 
   constructor(private paisService: PaiesService) { }
 
-  buscar(termino:string) {
-    this.hayError = false;
-    this.termino = termino;
+  getClassCSS(region:string):string{
+    return (region === this.regionActiva)
+    ? 'btn btn-primary'
+    : 'btn-outline-primary';
 
-    this.paisService.buscarRegion(termino)
-      .subscribe((paises) => {
-        this.paises = paises;
-        console.log(paises);
-
-      }, (error) => {
-        this.hayError = true;
-        this.paises = [];
-        // console.info(error);
-      });
   }
+
+  activarRegion(region:string){
+    if(region === this.regionActiva) return ;
+
+    this.regionActiva = region;
+    this.paises = [];
+    this.paisService.buscarRegion(region)
+    .subscribe((paises) =>{
+      this.paises = paises;
+    })
+  }
+
+
   
 
 }

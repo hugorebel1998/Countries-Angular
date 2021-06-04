@@ -9,6 +9,10 @@
                     (onDebounce)="sugerencia($event)"
                     placeholder="Buscar por país">
                     </app-pais-input>
+
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action">Por pais </li>
+                    </ul>
                     <hr>
                 </div>
                 <div *ngIf="hayError" class="col-md-12">
@@ -17,7 +21,7 @@
                     </div>
                 </div>
                 <div *ngIf="paises.length > 0" class="col-md-12">
-                    <div class="card">
+                    <div class="card animate__animated animate__backInUp">
                         <div class="card-header bg-info">
                             <p class="text-white">Lista de Países</p>
                         </div>

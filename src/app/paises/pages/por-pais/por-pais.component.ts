@@ -15,16 +15,16 @@ import { PaiesService } from '../../services/paies.service';
     `
   ]
 })
-export class PorPaisComponent{
+export class PorPaisComponent {
 
   termino: string = "";
   hayError: boolean = false;
   paises: Country[] = [];
-  paisesSugeridos:Country[] = [];
+  paisesSugeridos: Country[] = [];
 
   constructor(private paisService: PaiesService) { }
 
-  buscar(termino:string) {
+  buscar(termino: string) {
     this.hayError = false;
     this.termino = termino;
 
@@ -39,11 +39,16 @@ export class PorPaisComponent{
         // console.info(error);
       });
   }
-  sugerencia(termino:any){
+  sugerencia(termino: string) {
     this.hayError = false;
     // TODO:Crar sugerencia
     this.paisService.buscarPais(termino)
-    .subscribe(paises => this.paisesSugeridos = paises.splice(0,4))
+      .subscribe(
+        paises => this.paisesSugeridos = paises.splice(0,4),
+        (err)=> this.paisesSugeridos = []
+        
+    );
+    
   }
 
 }

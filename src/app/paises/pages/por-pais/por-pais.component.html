@@ -11,7 +11,10 @@
                     </app-pais-input>
 
                     <ul class="list-group">
-                        <li class="list-group-item list-group-item-action">Por pais </li>
+                        <li *ngFor="let pais of paisesSugeridos"
+                         class="list-group-item list-group-item-action">
+                            {{ pais.name }}
+                        </li>
                     </ul>
                     <hr>
                 </div>
